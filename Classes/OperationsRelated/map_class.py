@@ -18,4 +18,4 @@ class Map():
         if room_name in self.map.keys():
             return self.map[room_name]
         else:
-            print(f'{room_name} is not a valid exit')
+            raise ValueError
