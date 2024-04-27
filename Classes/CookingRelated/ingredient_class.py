@@ -4,11 +4,21 @@ This class is for objects that are considered ingredients. It will contain infor
 
 class Ingredient:
 
-    def __init__(self, name, description, cooked_status, dried_status, ground_status):
-        self.name = name
-        self.description = description
-        self.cooked_status = cooked_status
-        self.dried_status = dried_status
+    def __init__(self, dict_reader_row):
+        self.name = dict_reader_row['name']
+        self.description = dict_reader_row['description']
+        self.cooked_status = dict_reader_row['cooked_status']
+        self.dried_status = dict_reader_row['dried_status']
+        self.ground_status = dict_reader_row['ground_status']
 
-    def add_ingredient(self, dict_reader_row):
-        
+    def cook_ingredient(self):
+        self.cooked_status = 'cooked'
+
+    def dry_ingredient(self):
+        self.dried_status = 'dried'
+
+    def grind_ingredient(self):
+        self.ground_status = 'ground'
+
+    def get_name(self):
+        return self.name

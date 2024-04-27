@@ -10,5 +10,3 @@ def csv_to_dict_reader(file_path):
         csv_read = csv.DictReader(csvfile)
         for row in csv_read:
             print(row)
-
-csv_to_dict_reader('ingredient_info.csv')
