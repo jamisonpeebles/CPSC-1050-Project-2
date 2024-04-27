@@ -9,3 +9,6 @@ class Ingredient:
         self.description = description
         self.cooked_status = cooked_status
         self.dried_status = dried_status
+
+    def add_ingredient(self, dict_reader_row):
+        
