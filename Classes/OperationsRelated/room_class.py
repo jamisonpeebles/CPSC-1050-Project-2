@@ -9,6 +9,7 @@ class Room:
         self.name = name
         self.description = description
         self.exits = exits
+        self.current_room = False
 
     #returns name of room
     def get_name(self):
@@ -33,3 +34,9 @@ class Room:
     def __str__(self):
         string = f'{self.name}: {self.description}\n\nExits:\n{self.list_exits()}'
         return string
+    
+    def is_current_room(self):
+        self.current_room = True
+
+    def is_not_current_room(self):
+        self.current_room = False
