@@ -14,7 +14,7 @@ class Potion:
     def dump_potion(self):
         self.contents = {}
 
-    def check_potion(self, logbook):
+    def check_potion(self, logbook, user):
         order1 = True
         order2 = True
         order3 = True
@@ -53,15 +53,18 @@ class Potion:
                 else:
                     order3 = False
 
-        if order1 == True:
+        if (logbook.order1.get_raw_status == False) and (order1 == True):
             logbook.order1.complete_order()
             print('Congratulations! Order 1 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+            user.potion_completed()
             self.dump_potion()
-        elif order2 == True:
+        elif (logbook.order2.get_raw_status == False) and (order2 == True):
             logbook.order2.complete_order()
             print('Congratulations! Order 2 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+            user.potion_completed()
             self.dump_potion()
-        elif order3 == True:
+        elif (logbook.order3.get_raw_status == False) and (order3 == True):
             logbook.order3.complete_order()
             print('Congratulations! Order 3 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+            user.potion_completed()
             self.dump_potion()

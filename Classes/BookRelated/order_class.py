@@ -16,6 +16,9 @@ class Order:
     def complete_order(self):
         self.status = True
 
+    def get_raw_status(self):
+        return self.status
+
     def check_status(self):
         if self.status == True:
             return 'Order Complete'

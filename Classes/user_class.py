@@ -37,6 +37,15 @@ class User:
     def get_inventory(self):
         return self.inventory
     
+    def potion_completed(self):
+        self.order_completion += 1
+
+    def check_completion(self):
+        if self.order_completion == 3:
+            print('Congratualations. You survived your first day as the Alchemist. Rest well, you will need it for when the orders pick up tomorrow.\n\n\nYou have finished the demo version of the game. Enter any key to exit the game.')
+            end_key = input()
+            quit()
+    
     def take_from_inventory(self):
         while True:
             item_choice = input('Please choose an item from inventory to hold: ').strip().lower()
@@ -55,5 +64,3 @@ class User:
             self.inventory.pop(removal)
         else:
             raise ValueError
-    
-    def check_completion():

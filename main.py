@@ -39,8 +39,8 @@ def main():
 
     while True:
         
-        potion.check_potion(logbook)
-        user.check_completion(logbook)
+        potion.check_potion(logbook, user)
+        user.check_completion()
 
         print(user)
 
