@@ -6,6 +6,7 @@ class Order:
     #creates a method that will allow the creation of an object of the Order class along with the necessary characteristics. 
     def __init__(self, text, status=False):
         self.text = text
+        self.ingredients = []
         self.status = status
 
     def __str__(self):
@@ -20,3 +21,6 @@ class Order:
             return 'Order Complete'
         else:
             return 'Order Incomplete'
+
+    def add_needed_ingredient(self, ingredient):
+        self.ingredients.append(ingredient)

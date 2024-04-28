@@ -49,10 +49,11 @@ class User:
             else:
                 print('Please choose an item from inventory')
                 continue
-        
-
+    
     def remove_from_inventory(self, removal):
         if removal in self.inventory.keys():
             self.inventory.pop(removal)
         else:
             raise ValueError
+    
+    def check_completion():

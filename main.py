@@ -15,6 +15,7 @@ from Classes.BookRelated.logbook_class import Logbook
 from Classes.BookRelated.order_class import Order
 from Classes.BookRelated.recipe_class import Recipe
 from Classes.CookingRelated.ingredient_class import Ingredient
+from Classes.CookingRelated.dev_ingredient_class import devIngredient
 from Classes.OperationsRelated.ingredient_room_class import IngredientStorage
 from Classes.OperationsRelated.map_class import Map
 from Classes.OperationsRelated.room_class import Room
@@ -29,7 +30,7 @@ def main():
     logbook = Logbook()
     potion = Potion()
 
-    init_game(map)
+    init_game(map, logbook)
 
     user = User(map.get_room('storage room'), map)
 
@@ -39,6 +40,7 @@ def main():
     while True:
         
         potion.check_potion(logbook)
+        user.check_completion(logbook)
 
         print(user)
 
