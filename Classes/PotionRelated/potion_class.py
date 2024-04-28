@@ -3,22 +3,24 @@ A class containing the info for creation of a new potion
 '''
 
 class Potion:
-    
+    #initializes attributes of an instance of the potion class 
     def __init__(self):
         self.name = ''
         self.contents = {}
         self.secret_count = 1
         self.okay = 'The potion bubbles and swirls, flashing numerous colors before settling again. You think you did the right thing, at least for now.'
 
-    def add_ingredient(self, ingredient):
-        #self.contents[ingredient.get_name()] = ingredient
-        self.check_potion(ingredient)
+    #allows user to add ingredient to the potion
+    def add_ingredient(self, ingredient, user):
+        self.check_potion(ingredient, user)
 
+    #resets the potion contents
     def dump_potion(self):
         self.contents = {}
 
-    def check_potion(self, ingredient):
-
+    #checks potion additions to determine if they are right
+    def check_potion(self, ingredient, user):
+        #each if/else statement checks the most recent addition to ensure it abides to the recipe and if not, prints a failure message. On the tenth check, if passed, the user will see a victory message since they have then won the game
         if self.secret_count == 1:
             if (ingredient.get_name() == 'thistle') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
                 print(self.okay)
@@ -36,6 +38,7 @@ class Potion:
                 print(self.okay)
                 self.secret_count += 1
                 print('Congratulations! Order 1 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+                user.order_completion += 1
             else:
                 self.failure()
         elif self.secret_count == 4:
@@ -61,6 +64,7 @@ class Potion:
                 print(self.okay)
                 self.secret_count += 1
                 print('Congratulations! Order 2 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+                user.order_completion += 1
             else:
                 self.failure()
         elif self.secret_count == 8:
@@ -139,6 +143,7 @@ class Potion:
             user.potion_completed()
             self.dump_potion()'''
 
+    #prints a failure message and requires the user to acknowledge the message before quitting the program
     def failure(self):
         print('The potion boils vigourously and begins to expand. Fumes begin to fill the air as the potion turns black as night. You breathe in the fumes and begin to hallucinate, seeing uncomprehensible horrors. Your last thought is that you wish you\'d been more careful...\n\nGame Over. Enter any key to exit.\n')
         end_key = input()
