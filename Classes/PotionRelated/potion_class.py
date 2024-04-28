@@ -7,15 +7,85 @@ class Potion:
     def __init__(self):
         self.name = ''
         self.contents = {}
+        self.secret_count = 1
+        self.okay = 'The potion bubbles and swirls, flashing numerous colors before settling again. You think you did the right thing, at least for now.'
 
     def add_ingredient(self, ingredient):
-        self.contents[ingredient.get_name()] = ingredient
+        #self.contents[ingredient.get_name()] = ingredient
+        self.check_potion(ingredient)
 
     def dump_potion(self):
         self.contents = {}
 
-    def check_potion(self, logbook, user):
-        order1 = True
+    def check_potion(self, ingredient):
+
+        if self.secret_count == 1:
+            if (ingredient.get_name() == 'thistle') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 2:
+            if (ingredient.get_name() == 'essence of the sea') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 3:
+            if (ingredient.get_name() == 'bone of the unholy serpent') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+                print('Congratulations! Order 1 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+            else:
+                self.failure()
+        elif self.secret_count == 4:
+            if (ingredient.get_name() == 'mushroom') and (ingredient.get_ground_status() == 'unground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 5:
+            if (ingredient.get_name() == 'mushroom') and (ingredient.get_ground_status() == 'unground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 6:
+            if (ingredient.get_name() == 'essence of the sea') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 7:
+            if (ingredient.get_name() == 'leaves of the sacred vine') and (ingredient.get_ground_status() == 'unground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+                print('Congratulations! Order 2 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
+            else:
+                self.failure()
+        elif self.secret_count == 8:
+            if (ingredient.get_name() == 'coffee') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 9:
+            if (ingredient.get_name() == 'essence of the sea') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                self.secret_count += 1
+            else:
+                self.failure()
+        elif self.secret_count == 10:
+            if (ingredient.get_name() == 'leaves of the sacred vine') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
+                print(self.okay)
+                print('Congratulations! Order 3 is completed.')
+                print('Congratualations. You survived your first day as the Alchemist. Rest well, you will need it for when the orders pick up tomorrow.\n\n\nYou have finished the demo version of the game. Enter any key to exit the game.')
+                end_key = input()
+                quit()
+            else:
+                self.failure()
+
+        '''order1 = True
         order2 = True
         order3 = True
         for content in self.contents:
@@ -67,7 +137,9 @@ class Potion:
             logbook.order3.complete_order()
             print('Congratulations! Order 3 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
             user.potion_completed()
-            self.dump_potion()
+            self.dump_potion()'''
 
-    def add_content(self, additive):
-        self.contents[additive.get_name()] = additive
+    def failure(self):
+        print('The potion boils vigourously and begins to expand. Fumes begin to fill the air as the potion turns black as night. You breathe in the fumes and begin to hallucinate, seeing uncomprehensible horrors. Your last thought is that you wish you\'d been more careful...\n\nGame Over. Enter any key to exit.\n')
+        end_key = input()
+        quit()

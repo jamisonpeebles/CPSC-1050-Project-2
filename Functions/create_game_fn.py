@@ -8,7 +8,7 @@ from Classes.OperationsRelated.room_class import Room
 from Classes.OperationsRelated.ingredient_room_class import IngredientStorage
 from Classes.CookingRelated.ingredient_class import Ingredient
 from Classes.BookRelated.logbook_class import Logbook
-from Classes.CookingRelated.dev_ingredient_class import devIngredient
+from Archived.dev_ingredient_class import devIngredient
 from Functions.instruction_delivery_fn import instructions
 
 def init_game(map, logbook):

@@ -25,3 +25,9 @@ class Ingredient:
 
     def get_name(self):
         return self.name
+    
+    def get_dried_status(self):
+        return self.dried_status
+    
+    def get_ground_status(self):
+        return self.ground_status

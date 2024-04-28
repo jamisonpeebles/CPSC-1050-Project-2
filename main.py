@@ -7,15 +7,14 @@ Course:         CPSC1050
 CODE DESCRIPTION: 
 
 """
-
+#imports needed functions and classes from other files
 import csv
 
 from Classes.user_class import User
 from Classes.BookRelated.logbook_class import Logbook
 from Classes.BookRelated.order_class import Order
-from Classes.BookRelated.recipe_class import Recipe
 from Classes.CookingRelated.ingredient_class import Ingredient
-from Classes.CookingRelated.dev_ingredient_class import devIngredient
+from Archived.dev_ingredient_class import devIngredient
 from Classes.OperationsRelated.ingredient_room_class import IngredientStorage
 from Classes.OperationsRelated.map_class import Map
 from Classes.OperationsRelated.room_class import Room
@@ -38,9 +37,6 @@ def main():
     print('You have awoken in your bedroom; however, it is not actually your bedroom. Looking around, you make several conclusions about your newfound residence. You see maps and photos on your walls and combining theses with the surroundings you observe outside your window, you realize you are in a small cottage in southern France. You also realize that it is no longer modern day. Rather, you have somehow been transported back to the middle ages. Rising from bed, you see your room is simply furnished by the bed you awoke from, a small dresser, and a desk. There is an old, word, leather-bound book sitting on top of the desk with a folded piece of paper tucked into the cover. You draw the paper from the book and read: "Welcome to your new home. Your first trial is to make it through the day. Make it through a month, and the curse will be lifted. Don\'t fail. Today you will only have three customers. Each will request a different product, good luck figuring out how to make them. Use your intuition and guess your way through it; I have left you more than enough ingredients for your first day, but if you need extra help, check the recipe list within this book. Luckily your customers are infinitely patient and write their orders in the Logbook to help you out. Don\'t worry, you did nothing to deserve this. The curse randomly selects a new Alchemist each month after one completes their service... or fails. \nOn that note, good luck and good riddance to this place. \n\n\t-Alchemist MDCCXVII\n\n')
 
     while True:
-        
-        potion.check_potion(logbook, user)
-        user.check_completion()
 
         print(user)
 
@@ -104,7 +100,7 @@ def main():
                             break
 
                         elif item_choice == 'use item in current potion':
-                            potion.add_content(user.held_item)
+                            potion.add_ingredient(user.held_item)
                             user.held_item = None
                             break
 

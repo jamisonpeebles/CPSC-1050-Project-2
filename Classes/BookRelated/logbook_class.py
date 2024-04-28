@@ -8,7 +8,7 @@ class Logbook:
 
     def __init__(self, order_list = []):
         self.order1 = Order('A poison\nIngredients: \n1 dried and ground thistle\n1 essence of the sea\n1 dried and ground bone of the unholy serpent\n')
-        self.order2 = Order('An elixir of health\nIngredients: \n2 dried and ground mushroom\n1 essence of the sea\n1 dried and ground leaves of the sacred vine\n')
+        self.order2 = Order('An elixir of health\nIngredients: \n2 dried mushroom\n1 essence of the sea\n1 dried leaves of the sacred vine\n')
         self.order3 = Order('An elixir of unending focus\nIngredients: \n1 dried and ground coffee\n1 essence of the sea\n1 dried and ground leaves of the sacred vine\n')
         self.order_list = [self.order1, self.order2, self.order3]
 
