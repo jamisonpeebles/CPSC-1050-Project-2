@@ -3,6 +3,7 @@ Author:         Jamison Peebles
 Date:           April 25, 2024
 Assignment:     Project 02
 Course:         CPSC1050
+GitHub link:    https://github.com/jamisonpeebles
 
 CODE DESCRIPTION: 
 
