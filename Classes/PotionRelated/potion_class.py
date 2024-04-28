@@ -19,7 +19,7 @@ class Potion:
         self.contents = {}
 
     #checks potion additions to determine if they are right
-    def check_potion(self, ingredient, user):
+    def check_potion(self, ingredient, user, logbook):
         #each if/else statement checks the most recent addition to ensure it abides to the recipe and if not, prints a failure message. On the tenth check, if passed, the user will see a victory message since they have then won the game
         if self.secret_count == 1:
             if (ingredient.get_name() == 'thistle') and (ingredient.get_ground_status() == 'ground') and (ingredient.get_dried_status() == 'dried'):
@@ -39,6 +39,7 @@ class Potion:
                 self.secret_count += 1
                 print('Congratulations! Order 1 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
                 user.order_completion += 1
+                logbook.order1.complete_order()
             else:
                 self.failure()
         elif self.secret_count == 4:
@@ -65,6 +66,7 @@ class Potion:
                 self.secret_count += 1
                 print('Congratulations! Order 2 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
                 user.order_completion += 1
+                logbook.order2.complete_order()
             else:
                 self.failure()
         elif self.secret_count == 8:
