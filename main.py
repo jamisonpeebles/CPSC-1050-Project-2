@@ -81,14 +81,14 @@ def main():
                     break
 
             elif first_choice == 'use held item':
-                if type(user.held_item != None):
+                if type(user.held_item) != type(None):
                     
                     while True:
-                        item_choice = input('Choose what to do with your item: ( exmaine item, dry item, grind item, use item in current potion )').strip().lower()
+                        item_choice = input('Choose what to do with your item: ( exmaine item, dry item, grind item, use item in current potion )\n').strip().lower()
 
                         if item_choice == 'dry item':
                             user.held_item.dry_ingredient()
-                            print(f'Your {user.held_item} is now dried')
+                            print(f'Your {user.held_item.get_name()} is now dried')
                             break
 
                         elif item_choice == 'examine item':
@@ -98,14 +98,14 @@ def main():
                         elif item_choice == 'grind item':
                             if user.held_item.dried_status == 'dried':
                                 user.held_item.grind_ingredient()
-                                print(f'Your {user.held_item} is now ground')
+                                print(f'Your {user.held_item.get_name()} is now ground')
                             else:
                                 print('You probably shouldn\'t try to grind something without drying it first.')
                             break
 
                         elif item_choice == 'use item in current potion':
-                            user.current_potion.contents.add_ingredient(user.held_item)
-                            user.held_item = ''
+                            potion.add_content(user.held_item)
+                            user.held_item = None
                             break
 
                         else:
@@ -117,6 +117,7 @@ def main():
 
             elif first_choice == 'throw away held item':
                 user.held_item = None
+                print('You have thrown away your item. Beware running out of materials, you can\'t get any more...')
 
             elif first_choice == 'read logbook':
                 print(logbook)

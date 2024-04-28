@@ -68,3 +68,6 @@ class Potion:
             print('Congratulations! Order 3 is completed. Your current potion is replaced with plain water. Focus on your other orders or else...\n')
             user.potion_completed()
             self.dump_potion()
+
+    def add_content(self, additive):
+        self.contents[additive.get_name()] = additive

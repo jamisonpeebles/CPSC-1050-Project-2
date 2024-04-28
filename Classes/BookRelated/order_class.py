@@ -25,5 +25,5 @@ class Order:
         else:
             return 'Order Incomplete'
 
-    def add_needed_ingredient(self, ingredient):
+    def add_ingredients(self, ingredient):
         self.ingredients.append(ingredient)
