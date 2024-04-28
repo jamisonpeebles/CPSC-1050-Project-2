@@ -11,8 +11,8 @@ class Potion:
         self.okay = 'The potion bubbles and swirls, flashing numerous colors before settling again. You think you did the right thing, at least for now.'
 
     #allows user to add ingredient to the potion
-    def add_ingredient(self, ingredient, user):
-        self.check_potion(ingredient, user)
+    def add_ingredient(self, ingredient, user, logbook):
+        self.check_potion(ingredient, user, logbook)
 
     #resets the potion contents
     def dump_potion(self):

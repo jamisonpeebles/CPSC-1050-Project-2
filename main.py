@@ -121,7 +121,7 @@ def main():
                         #if user is in the bottling room, the held item is added to the potion
                         elif item_choice == 'use item in current potion':
                             if user.location.get_name() == 'bottling room':
-                                potion.add_ingredient(user.held_item, user, logbook)
+                                potion.add_ingredient(user.held_item, user, logbook, )
                                 user.held_item = None
                             else:
                                 print('Your cauldron is in the bottling room. Go there to add to the potion')
