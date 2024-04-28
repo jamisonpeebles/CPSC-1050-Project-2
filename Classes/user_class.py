@@ -7,15 +7,14 @@ class User:
         self.location = location
         self.map = map
         self.room_choice = ''
-        self.inventory = {}
         self.order_completion = 0
         self.held_item = None
 
     def __str__(self):
         if type(self.held_item) != type(None):
-            prtstr = f'\nCurrent Room: {self.location.get_name()}: {self.location.get_description()}\nCurrent Inventory: {self.inventory}\nOrders Completed: {self.order_completion}/3\nHeld Item: {self.held_item.get_name()}'
+            prtstr = f'\nCurrent Room: {self.location.get_name()}: {self.location.get_description()}\nOrders Completed: {self.order_completion}/3\nHeld Item: {self.held_item.get_name()}'
         else:
-            prtstr = f'\nCurrent Room: {self.location.get_name()}: {self.location.get_description()}\nCurrent Inventory: {self.inventory}\nOrders Completed: {self.order_completion}/3\nHeld Item: Not currently holding an item'
+            prtstr = f'\nCurrent Room: {self.location.get_name()}: {self.location.get_description()}\nOrders Completed: {self.order_completion}/3\nHeld Item: Not currently holding an item'
         return prtstr
     
     def set_room_choice(self,map):

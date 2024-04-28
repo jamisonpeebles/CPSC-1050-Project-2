@@ -7,6 +7,7 @@ import csv
 from Classes.OperationsRelated.room_class import Room
 from Classes.OperationsRelated.ingredient_room_class import IngredientStorage
 from Classes.CookingRelated.ingredient_class import Ingredient
+from Classes.BookRelated.logbook_class import Logbook
 from Functions.instruction_delivery_fn import instructions
 
 def init_game(map):
@@ -19,7 +20,8 @@ def init_game(map):
     with open('/home/jspeebl/CPSC-1050-Project-2/ingredient_info.csv', 'r') as csvfile:
         ingredient_info = csv.DictReader(csvfile)
         for row in ingredient_info:
-            ingredient = Ingredient(row)
-            map.get_room('storage room').store_ingredient(ingredient)
+            for i in range(0,int(row['amount'])):
+                ingredient = Ingredient(row)
+                map.get_room('storage room').store_ingredient(ingredient)
 
     instructions()

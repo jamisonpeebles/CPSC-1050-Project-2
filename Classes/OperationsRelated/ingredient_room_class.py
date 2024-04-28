@@ -22,20 +22,19 @@ class IngredientStorage(Room):
     def store_ingredient(self, ingredient):
         self.stored_ingredients.append(ingredient)
 
-    def inventory_an_ingredient(self, ingredient):
+    def inventory_ingredients(self):
+        self.ingredient_inventory = {}
         for ingredient in self.stored_ingredients:
             if ingredient.get_name() in self.ingredient_inventory.keys():
                 self.ingredient_inventory[ingredient.get_name()] += 1
             else: 
                 self.ingredient_inventory[ingredient.get_name()] = 1
 
-    def check_inventory(self):
-        pass
-
-    def take_item(self, item):
-        if item in map.get_room('storage room').stored_ingredients:
-            for ingredient in map.get_room('storage room').stored_ingredients:
-                if ingredient.get_name() == item:
-                    return ingredient
-        else:
-            raise ValueError
+    def take_item(self, item, map):
+        if item == 'exit':
+            return None
+        for ingredient in map.get_room('storage room').stored_ingredients:
+            if ingredient.get_name() == item:
+                map.get_room('storage room').stored_ingredients.remove(ingredient)
+                return ingredient
+        raise ValueError

@@ -26,69 +26,79 @@ from Functions.instruction_delivery_fn import instructions
 def main():
 
     map = Map()
+    logbook = Logbook()
+    potion = Potion()
 
     init_game(map)
 
-    user = User(map.get_room('bedroom'), map)
+    user = User(map.get_room('storage room'), map)
 
     #prints welcome message
     print('You have awoken in your bedroom; however, it is not actually your bedroom. Looking around, you make several conclusions about your newfound residence. You see maps and photos on your walls and combining theses with the surroundings you observe outside your window, you realize you are in a small cottage in southern France. You also realize that it is no longer modern day. Rather, you have somehow been transported back to the middle ages. Rising from bed, you see your room is simply furnished by the bed you awoke from, a small dresser, and a desk. There is an old, word, leather-bound book sitting on top of the desk with a folded piece of paper tucked into the cover. You draw the paper from the book and read: "Welcome to your new home. Your first trial is to make it through the day. Make it through a month, and the curse will be lifted. Don\'t fail. Today you will only have three customers. Each will request a different product, good luck figuring out how to make them. Use your intuition and guess your way through it; I have left you more than enough ingredients for your first day, but if you need extra help, check the recipe list within this book. Luckily your customers are infinitely patient and write their orders in the Logbook to help you out. Don\'t worry, you did nothing to deserve this. The curse randomly selects a new Alchemist each month after one completes their service... or fails. \nOn that note, good luck and good riddance to this place. \n\n\t-Alchemist MDCCXVII\n\n')
 
     while True:
+        
+        potion.check_potion(logbook)
 
         print(user)
 
         while True: 
-            print('What would you like to do? (exit room / select item from inventory / use held item / take item from storage (note: must be in storage room to take items))')
+            print('What would you like to do? (exit room / read logbook / dump current potion / use held item / throw away held item / take item from storage (note: must be in storage room to take items))')
+            
             first_choice = input().strip().lower()
+            
             if first_choice == 'exit room':
                 
                 print(f'Exit options: {user.location.get_exits()}')
                 user.set_room_choice(map)
                 break
 
-            elif first_choice == 'select item from inventory':
-
-                print(f'Inventory Contents: {user.get_inventory()}')
-                user.take_from_inventory()
-
             elif first_choice == 'take item from storage':
-                while True:
-                    if user.location.get_name() == 'storage room':
+                #while True:
+
+                if user.location.get_name() == 'storage room' and (user.held_item == None):
+                    
+                    map.get_room('storage room').inventory_ingredients()
+                    print(map.get_room('storage room'))
+
+                    item_choice = ''
+                    while not (item_choice == 'exit'):
+                    
+                        item_choice = input('What item would you like to take from storage? (enter "exit" to leave menu)\n').strip().lower()
                         
-                        print(map.get_room('storage room'))
+                        try:
+                            user.held_item = map.get_room('storage room').take_item(item_choice, map)
+                            print(f'You are now holding the following item: {user.held_item.get_name()}')
+                        except:
+                            print(f'You must select and item from the storage room')
 
-                        item_choice = ''
-                        while not (item_choice == 'exit'):
-                            while True:
-                                item_choice = input('What item would you like to take from storage?').strip().lower()
-                                try:
-                                    user.held_item = map.get_room('storage room').take_item(item_choice)
-                                    break
-                                except:
-                                    print('Please choose an item in the storage room')
-                                    continue
+                        break
 
-                    else:
-                        print('You must be in the storage room to access the hut\'s storage')
-                        continue
+                else:
+                    print('You must be in the storage room with no currently held item to access the hut\'s storage')
+                    break
 
             elif first_choice == 'use held item':
-                if not(user.held_item.isempty()):
+                if type(user.held_item != None):
                     
                     while True:
-                        item_choice = input('Choose what to do with your item: ( dry item, cook item, grind item, use item in current potion )').strip().lower()
+                        item_choice = input('Choose what to do with your item: ( exmaine item, dry item, grind item, use item in current potion )').strip().lower()
 
                         if item_choice == 'dry item':
                             user.held_item.dry_ingredient()
+                            print(f'Your {user.held_item} is now dried')
                             break
 
-                        elif item_choice == 'cook item':
-                            user.held_item.cook_ingredient()
+                        elif item_choice == 'examine item':
+                            print(user.held_item)
                             break
 
                         elif item_choice == 'grind item':
-                            user.held_item.grind_ingredient()
+                            if user.held_item.dried_status == 'dried':
+                                user.held_item.grind_ingredient()
+                                print(f'Your {user.held_item} is now ground')
+                            else:
+                                print('You probably shouldn\'t try to grind something without drying it first.')
                             break
 
                         elif item_choice == 'use item in current potion':
@@ -99,6 +109,19 @@ def main():
                         else:
                             print('Please enter a choice from the options')
                             continue
+
+                else:
+                    print('You must be holding an item to use it')
+
+            elif first_choice == 'throw away held item':
+                user.held_item = None
+
+            elif first_choice == 'read logbook':
+                print(logbook)
+
+            elif first_choice == 'dump current potion':
+                potion.dump_potion()
+                print('Your potion is fresh of boiling water. Your old ingerdients have been washed into the abyss. Don\'t be wasteful...')
                         
             else:
                 print('Please choose a valid option')

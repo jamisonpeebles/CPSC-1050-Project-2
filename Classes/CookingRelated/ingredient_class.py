@@ -11,6 +11,9 @@ class Ingredient:
         self.dried_status = dict_reader_row['dried_status']
         self.ground_status = dict_reader_row['ground_status']
 
+    def __str__(self):
+        return self.description
+
     def cook_ingredient(self):
         self.cooked_status = 'cooked'
 
